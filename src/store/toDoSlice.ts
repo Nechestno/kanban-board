@@ -1,22 +1,45 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ICards} from "../types/cards.types.ts";
+import {createSlice, PayloadAction, createAsyncThunk} from "@reduxjs/toolkit";
+import {ICards, ICardsStatus} from "../types/cards.types.ts";
+import axios from "axios";
 
-const initialState: { todos: ICards[] } = {
-    todos: [],
+const initialState: ICardsStatus = {
+    list: [],
+    loading: false,
+    error: null,
 };
+
+export const fetchTodos = createAsyncThunk<ICards[], undefined, {rejectValue : string}>(
+    'todos/fetchTodos',
+    async function (_, {rejectWithValue}) {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10');
+        if (Object.keys(response.data).length === 0) {
+            return rejectWithValue('Server Error');
+        }
+        return response.data
+    }
+)
 const toDoSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        addTodo: (state, action: PayloadAction<ICards>) => {
-            console.log(state);
-            console.log(action);
-            state.todos.push(action.payload);
-        },
-        removeTodo: (state, action: PayloadAction<string>) => {
-            state.todos = state.todos.filter(todo => todo.id !== action.payload);
-        },
+
     },
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchTodos.pending, (state: ICardsStatus) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchTodos.fulfilled, (state: ICardsStatus, action) => {
+                state.list = action.payload;
+                state.loading = false;
+            })
+            .addCase(fetchTodos.rejected, (state: ICardsStatus, action) => {
+                state.loading = false;
+                state.error = action.payload || 'Unknown error';
+            });
+    }
+
 });
 
 // Export actions and reducer

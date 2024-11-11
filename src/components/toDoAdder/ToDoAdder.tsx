@@ -5,11 +5,13 @@ import {ICards} from "../../types/cards.types.ts";
 import {useDispatch} from "react-redux";
 import {addTodo} from "../../store/toDoSlice.ts";
 import { v4 as uuidv4 } from 'uuid';
+import {useAppDispatch} from "../../hooks.ts";
 
 const ToDoAdder = () => {
     const [selectValue, setSelectValue] = useState<ICards>(null);
     const [todoText, setTodoText] = useState<string>('');
     const [todoName, setTodoName] = useState<string>('');
+    const dispatch = useAppDispatch();
 
     const onChangeText = (value:string) => {
         setTodoText(value)
@@ -24,7 +26,6 @@ const ToDoAdder = () => {
     const onChangeSelect = (value: string) => {
 
     };
-    const dispatch = useDispatch();
 
     const addCard = () => {
         dispatch(addTodo(selectValue));
