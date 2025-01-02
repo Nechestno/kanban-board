@@ -34,18 +34,18 @@ const ToDoAdder = () => {
     }
 
     return (
-        <div className='side_bar'>
-            <h1>Добавить ToDo</h1>
-            <Input className='sb_input'
+        <div className='side-bar'>
+            <h1 className='side-bar__title'>Добавить ToDo</h1>
+            <Input className='side-bar__input'
             value={todoName}
             onChange={(e) => onChangeName(e.target.value)}
             placeholder="Enter ToDo name"  ></Input>
-            <Input className='sb_input'
+            <Input className='side-bar__input'
                    value={todoText}
                    onChange={(e) => onChangeText(e.target.value)}
                    placeholder="Enter ToDo text"  ></Input>
-            <Select className='sb_select' onChange={onChangeSelect}></Select>
-            <Button className='sb_button' type='primary'  onClick={addCard} > Добавить ToDo</Button>
+            <Select className='side-bar__select' onChange={onChangeSelect}></Select>
+            <Button className='side-bar__button' type='primary'  onClick={addCard} > Добавить ToDo</Button>
         </div>
     );
 }

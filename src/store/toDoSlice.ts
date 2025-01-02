@@ -1,12 +1,16 @@
-import {createSlice, PayloadAction, createAsyncThunk} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction, createAsyncThunk, AnyAction} from "@reduxjs/toolkit";
 import {ICards, ICardsStatus} from "../types/cards.types.ts";
 import axios from "axios";
+import {a} from "vite/dist/node/types.d-aGj9QkWt";
 
 const initialState: ICardsStatus = {
     list: [],
     loading: false,
     error: null,
 };
+function isError(action: AnyAction){
+    return action.type.endsWith('rejected');
+}
 
 export const fetchTodos = createAsyncThunk<ICards[], undefined, {rejectValue : string}>(
     'todos/fetchTodos',
@@ -18,6 +22,17 @@ export const fetchTodos = createAsyncThunk<ICards[], undefined, {rejectValue : s
         return response.data
     }
 )
+export const deleteTodos = createAsyncThunk<ICards[], undefined, {rejectValue : string}>(
+    'todos/deleteTodos',
+    async function (id, {rejectWithValue}) {
+        const response = await axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
+        if (response.status != 'ok') {
+            return rejectWithValue('Server Error');
+        }
+        return id
+    }
+)
+
 const toDoSlice = createSlice({
     name: 'todos',
     initialState,
@@ -37,7 +52,15 @@ const toDoSlice = createSlice({
             .addCase(fetchTodos.rejected, (state: ICardsStatus, action) => {
                 state.loading = false;
                 state.error = action.payload || 'Unknown error';
+            })
+            .addCase(deleteTodos.fulfilled, (state: ICardsStatus, action ) => {
+                state.list = state.list.filter(todo => todo.id !== action.payload);
+            })
+            .addMatcher(isError, (state: ICardsStatus, action: PayloadAction<string>) => {
+                state.error = action.payload;
+                state.loading = false;
             });
+
     }
 
 });

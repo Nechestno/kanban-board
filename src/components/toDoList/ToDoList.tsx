@@ -3,15 +3,15 @@ import {Card, Space} from "antd";
 import {ICards} from "../../types/cards.types.ts";
 import {useSelector, useDispatch} from "react-redux";
 import { CloseOutlined } from '@ant-design/icons';
-import {addTodo, fetchTodos, removeTodo} from "../../store/toDoSlice.ts";
-import './style.scss'
+import {addTodo, deleteTodos, fetchTodos, removeTodo} from "../../store/toDoSlice.ts";
+import "./style.scss";
 import {useAppDispatch, useAppSelector} from "../../hooks.ts";
 
 const ToDoList  = () => {
     const toDos = useAppSelector(state => state.todos.list);
 
     const dispatch = useAppDispatch();
-    const removeCard = (value: string) => dispatch(removeTodo(value));
+    const removeCard = (value: string) => dispatch(deleteTodos(value));
 
     return (
         <div>
