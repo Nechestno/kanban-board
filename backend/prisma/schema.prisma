@@ -35,20 +35,22 @@ model Board {
 model Category {
   id        String   @id @default(uuid()) // Строковый идентификатор
   name      String
+  color     String
   boardId   String
-  board     Board    @relation(fields: [boardId], references: [id])
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
   tasks     Task[] // Связь с задачами
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Task {
-  id          String    @id @default(uuid()) // Строковый идентификатор
+  id          String   @id @default(uuid()) // Строковый идентификатор
+  workTitle   String // Наименование работы (фича, баг и т.д)
   title       String
   description String?
-  dueDate     DateTime?
+  dueDate     DateTime
   categoryId  String
-  category    Category  @relation(fields: [categoryId], references: [id])
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

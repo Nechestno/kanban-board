@@ -16,8 +16,8 @@ app.use(cookieParser());
 
 app.use('/api/user', require("./routes/users"));
 app.use('/api/board', require("./routes/boards"));
-/*app.use('/api/categories', require("./routes/categories"));
-app.use('/api/tasks', require("./routes/tasks"));*/
+app.use('/api/category', require("./routes/categories"));
+app.use('/api/task', require("./routes/tasks"));
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
