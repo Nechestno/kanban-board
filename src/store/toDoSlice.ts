@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction, createAsyncThunk, AnyAction} from "@reduxjs/toolkit";
 import {ICards, ICardsStatus} from "../types/cards.types.ts";
 import axios from "axios";
-import {a} from "vite/dist/node/types.d-aGj9QkWt";
 
 const initialState: ICardsStatus = {
     list: [],

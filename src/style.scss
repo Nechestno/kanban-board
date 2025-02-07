@@ -1,16 +1,21 @@
 #root{
-    font-family: 'Rubick',sans-serif;
+    font-family: 'Open Sans',sans-serif;
     margin: 0;
     padding: 0;
 }
 body{
-    font-family: 'Rubick',sans-serif;
+    font-family: 'Open Sans', sans-serif !important;
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
+    background: #202D48;
 }
 .layout_divider{
     display: flex;
     flex-direction: row;
+}
+
+.layout__container{
+
 }

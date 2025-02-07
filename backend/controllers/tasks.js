@@ -79,7 +79,7 @@ const createTask = async (req, res) => {
  * @access Private
  */
 const updateTask = async (req, res) => {
-    const { id, workTitle, title, description, dueDate } = req.body;
+    const { id, workTitle, title, description, dueDate, categoryId } = req.body;
 
     try {
         if (!id) {
@@ -101,6 +101,7 @@ const updateTask = async (req, res) => {
         if (title) updateData.title = title;
         if (description) updateData.description = description;
         if (dueDate) updateData.dueDate = new Date(dueDate);
+        if (categoryId) updateData.categoryId = categoryId;
 
         const updatedTask = await prisma.task.update({
             where: { id },
