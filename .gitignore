@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+package-lock.json
 node_modules
 dist
 dist-ssr
@@ -22,8 +23,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-backend/.env
 
 backend/package-lock.json
 *.css
 *.map
+
+*.idea

@@ -1,0 +1,38 @@
+.header {
+  background-color: #607196;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 12px;
+  border-radius: 6px;
+  border: 1px solid #82A7A6;
+
+  &__left-container, &__right-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__avatar {
+    background-color: #fde3cf;
+    color: #f56a00;
+  }
+
+  &__down-outline {
+    font-size: 14px;
+    margin: 0 19px 0 6px;
+    color: white
+  }
+
+  &__name {
+    margin: 12px 6px 12px 19px;
+    color: white
+  }
+
+  &__logo {
+    color: white;
+    font-size: 24px;
+  }
+
+
+}

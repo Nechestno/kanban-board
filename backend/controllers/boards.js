@@ -15,7 +15,7 @@ const getAllUserBoards = async (req, res) => {
             }
         });
         if (boards.length === 0) {
-            res.status(403).json({message:"Пользоатель не создал не одной канбан-доски."});
+            return res.status(403).json({message:"Пользоатель не создал не одной канбан-доски."});
         }
 
         res.status(200).json(boards);
@@ -93,13 +93,13 @@ const createBoard = async (req, res) => {
 }
 
 /**
- * @route UPDATE /api/board/updateBoard
+ * @route PUT /api/board/updateBoard
  * @desc Обновление канбан-доски
  * @access Private
  */
 
 const updateBoard = async (req, res) => {
-    const { id, name } = req.body;
+    const { id,name } = req.body;
     const userId = req.user.id;
 
     try {
@@ -145,12 +145,9 @@ const updateBoard = async (req, res) => {
 const deleteBoard = async (req, res) => {
     const { boardId } = req.params;
     const userId = req.user.id;
-    const id = boardId.split("=")[1];
-
-    console.log(id);
 
     try {
-        if (!id) {
+        if (!boardId) {
             return res.status(400).json({ message: 'Пожалуйста, укажите ID доски для удаления' });
         }
         if (!userId) {
@@ -159,7 +156,7 @@ const deleteBoard = async (req, res) => {
 
         const board = await prisma.board.findUnique({
             where: {
-                id,
+                id: boardId,
             },
         });
 
@@ -169,7 +166,7 @@ const deleteBoard = async (req, res) => {
 
         await prisma.board.delete({
             where: {
-                id,
+                id: boardId,
             },
         });
 

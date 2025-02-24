@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "semi": true,
+  "jsxSingleQuote": true,
+  "bracketSpacing": true
+}

@@ -1,0 +1,1 @@
+export type { CustomModalProps } from './modal.types';

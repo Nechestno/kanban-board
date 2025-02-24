@@ -1,7 +1,7 @@
 const {prisma} = require('../prisma/prisma-client');
 
 /**
- * @route GET /api/task/getAllTasksByCategoryId
+ * @route GET /api/task/getAllTasksByCategoryId/:categoryId
  * @desc Получение всех заданий пользвователя по categoryId
  * @access Private
  */
@@ -9,17 +9,19 @@ const {prisma} = require('../prisma/prisma-client');
 const getAllTasksByCategoryId = async (req, res) => {
     const { categoryId } = req.params;
     const userId = req.user.id;
-    const id = categoryId.split('=')[1];
 
     try {
         const tasks = await prisma.task.findMany({
             where: {
-                categoryId: id,
+                categoryId: categoryId,
                 category: {
                     board: {
                         userId: userId,
                     },
                 },
+            },
+            include: {
+                category: true, // Include the category details
             },
         });
 
@@ -40,10 +42,10 @@ const getAllTasksByCategoryId = async (req, res) => {
  * @access Private
  */
 const createTask = async (req, res) => {
-    const { workTitle, title, description, dueDate, categoryId } = req.body;
+    const { type, title, description, dueDate, tagColor, categoryId } = req.body;
 
     try {
-        if (!workTitle) {
+        if (!type) {
             return res.status(400).json({ message: "Пожалуйста, укажите название работы" });
         }
         if (!title) {
@@ -55,13 +57,17 @@ const createTask = async (req, res) => {
         if (!categoryId) {
             return res.status(400).json({ message: "Пожалуйста, укажите ID категории" });
         }
+        if (!tagColor) {
+            return res.status(400).json({ message: "Пожалуйста, укажите цвет" });
+        }
 
         const task = await prisma.task.create({
             data: {
-                workTitle,
+                type,
                 title,
                 description,
                 dueDate: new Date(dueDate),
+                tagColor,
                 categoryId,
             },
         });
@@ -74,12 +80,12 @@ const createTask = async (req, res) => {
 };
 
 /**
- * @route PUT /api/task/updateTask
+ * @route PATCH /api/task/updateTask
  * @desc Обновление задачи
  * @access Private
  */
 const updateTask = async (req, res) => {
-    const { id, workTitle, title, description, dueDate, categoryId } = req.body;
+    const { id, type, title, description, dueDate, tagColor, categoryId } = req.body;
 
     try {
         if (!id) {
@@ -97,11 +103,12 @@ const updateTask = async (req, res) => {
         }
 
         const updateData = {};
-        if (workTitle) updateData.workTitle = workTitle;
+        if (type) updateData.workTitle = type;
         if (title) updateData.title = title;
         if (description) updateData.description = description;
         if (dueDate) updateData.dueDate = new Date(dueDate);
         if (categoryId) updateData.categoryId = categoryId;
+        if (tagColor) updateData.categoryId = tagColor;
 
         const updatedTask = await prisma.task.update({
             where: { id },

@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require("../middleware/auth");
-const {createCategory, updateCategory, deleteCategory, getAllCategoriesByBoardId} = require("../controllers/categories");
+const {createCategory, updateCategory, deleteCategory, getAllCategoriesWithTasksByBoardId} = require("../controllers/categories");
 
 
-router.get("/getAllCategoriesByBoardId",auth, getAllCategoriesByBoardId);
+router.get("/getAllCategoriesWithTasksByBoardId/:boardId",auth, getAllCategoriesWithTasksByBoardId);
 
 router.post("/createCategory",auth, createCategory);
 

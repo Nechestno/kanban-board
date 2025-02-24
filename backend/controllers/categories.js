@@ -1,22 +1,25 @@
 const { prisma } = require('../prisma/prisma-client');
 
 /**
- * @route GET /api/category/getAllCategoriesByBoardId
+ * @route GET /api/category/getAllCategoriesByBoardId/:boardId
  * @desc Получение всех категорий пользователя
  * @access Private
  */
-const getAllCategoriesByBoardId = async (req, res) => {
+const getAllCategoriesWithTasksByBoardId = async (req, res) => {
     const userId = req.user.id;
     const { boardId } = req.params;
-    const id = boardId.split("=")[1];
+    console.log(boardId);
 
     try {
         const categories = await prisma.category.findMany({
             where: {
-                boardId: id,
+                boardId: boardId,
                 board: {
                     userId: userId,
                 },
+            },
+            include: {
+                tasks: true,
             },
         });
 
@@ -37,13 +40,13 @@ const getAllCategoriesByBoardId = async (req, res) => {
  * @access Private
  */
 const createCategory = async (req, res) => {
-    const { name, color, boardId } = req.body;
+    const { name, tagColor, boardId } = req.body;
 
     try {
         if (!name) {
             return res.status(400).json({ message: "Пожалуйста, введите название категории" });
         }
-        if (!color) {
+        if (!tagColor) {
             return res.status(400).json({ message: "Пожалуйста, укажите цвет категории" });
         }
         if (!boardId) {
@@ -53,7 +56,7 @@ const createCategory = async (req, res) => {
         const category = await prisma.category.create({
             data: {
                 name,
-                color,
+                tagColor,
                 boardId,
             },
         });
@@ -66,19 +69,19 @@ const createCategory = async (req, res) => {
 };
 
 /**
- * @route PUT /api/category/updateCategory
+ * @route PATCH /api/category/updateCategory
  * @desc Обновление категории
  * @access Private
  */
 const updateCategory = async (req, res) => {
-    const { id, name, color } = req.body;
+    const { id, name, tagColor } = req.body;
 
     try {
         if (!id) {
             return res.status(400).json({ message: "Пожалуйста, укажите ID категории для обновления" });
         }
 
-        if (!name && !color) {
+        if (!name && !tagColor) {
             return res.status(400).json({ message: "Пожалуйста, укажите данные для обновления (имя или цвет)" });
         }
 
@@ -94,7 +97,7 @@ const updateCategory = async (req, res) => {
 
         const updateData = {};
         if (name) updateData.name = name;
-        if (color) updateData.color = color;
+        if (tagColor) updateData.color = tagColor;
 
         const updatedCategory = await prisma.category.update({
             where: { id },
@@ -146,7 +149,7 @@ const deleteCategory = async (req, res) => {
 };
 
 module.exports = {
-    getAllCategoriesByBoardId,
+    getAllCategoriesWithTasksByBoardId,
     createCategory,
     updateCategory,
     deleteCategory,

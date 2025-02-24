@@ -26,7 +26,7 @@ model Board {
   id         String     @id @default(uuid()) // Строковый идентификатор
   name       String
   userId     String
-  user       User       @relation(fields: [userId], references: [id])
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   categories Category[] // Связь с категориями
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
@@ -35,7 +35,7 @@ model Board {
 model Category {
   id        String   @id @default(uuid()) // Строковый идентификатор
   name      String
-  color     String
+  tagColor  String
   boardId   String
   board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
   tasks     Task[] // Связь с задачами
@@ -45,8 +45,9 @@ model Category {
 
 model Task {
   id          String   @id @default(uuid()) // Строковый идентификатор
-  workTitle   String // Наименование работы (фича, баг и т.д)
+  type        String // Наименование работы (фича, баг и т.д)
   title       String
+  tagColor    String
   description String?
   dueDate     DateTime
   categoryId  String
