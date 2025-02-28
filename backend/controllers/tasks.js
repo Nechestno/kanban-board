@@ -57,9 +57,7 @@ const createTask = async (req, res) => {
         if (!categoryId) {
             return res.status(400).json({ message: "Пожалуйста, укажите ID категории" });
         }
-        if (!tagColor) {
-            return res.status(400).json({ message: "Пожалуйста, укажите цвет" });
-        }
+
 
         const task = await prisma.task.create({
             data: {
@@ -67,7 +65,6 @@ const createTask = async (req, res) => {
                 title,
                 description,
                 dueDate: new Date(dueDate),
-                tagColor,
                 categoryId,
             },
         });
@@ -85,7 +82,7 @@ const createTask = async (req, res) => {
  * @access Private
  */
 const updateTask = async (req, res) => {
-    const { id, type, title, description, dueDate, tagColor, categoryId } = req.body;
+    const { id, type, title, description, dueDate, categoryId } = req.body;
 
     try {
         if (!id) {
@@ -108,7 +105,6 @@ const updateTask = async (req, res) => {
         if (description) updateData.description = description;
         if (dueDate) updateData.dueDate = new Date(dueDate);
         if (categoryId) updateData.categoryId = categoryId;
-        if (tagColor) updateData.categoryId = tagColor;
 
         const updatedTask = await prisma.task.update({
             where: { id },

@@ -1,7 +1,7 @@
 import { createHashRouter, Navigate, Route, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import { SiteLayout } from '../layout';
 import { LoginPage } from '@/pages/login';
-import { MainPage } from '../../pages/Main/MainPage.tsx';
+import { MainPage } from '@/pages/main';
 import NoMatch from '../../pages/NoMatch/NoMatch.tsx';
 import { RegisterPage } from '@/pages/register';
 

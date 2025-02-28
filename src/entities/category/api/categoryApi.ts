@@ -1,6 +1,6 @@
 import { baseApi } from '@/shared/api';
 import { API_ENDPOINTS } from '@/shared/model';
-import { ICategoryData, IResponseCategoryData } from '../model';
+import { ICategoryData, ICategoryDataCreate, IResponseCategoryData } from '../model';
 
 
 export const categoryApi = baseApi.injectEndpoints({
@@ -10,13 +10,18 @@ export const categoryApi = baseApi.injectEndpoints({
         url: `${API_ENDPOINTS.CATEGORIES.GET_ALL_WITH_TASKS_BY_BOARD_ID}/${boardId}`,
         method: 'GET',
       }),
+      providesTags: (result) =>
+        result
+          ? [...result.map(({ id }) => ({ type: 'Category' as const, id })), 'Category']
+          : ['Category', 'Task'],
     }),
-    createCategory: builder.mutation<IResponseCategoryData, ICategoryData>({
+    createCategory: builder.mutation<IResponseCategoryData, ICategoryDataCreate>({
       query: (categoryData) => ({
         url: API_ENDPOINTS.CATEGORIES.CREATE,
         method: 'POST',
         body: categoryData,
       }),
+      invalidatesTags: ['Category']
     }),
     updateCategory: builder.mutation<ICategoryData, ICategoryData>({
       query: (categoryData) => ({

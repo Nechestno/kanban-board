@@ -1,4 +1,4 @@
-import { type ErrorWithMessage } from '../model';
+import { type ErrorWithMessage, taskTypesOptions } from '../model';
 
 
 export const isErrorWithMessage = (error: unknown): error is ErrorWithMessage => {
@@ -16,5 +16,15 @@ export const calculateDaysDifference = (dueDate: number) => {
 
   const differenceInTime = dueDateObj.getTime() - currentDate.getTime();
 
-  return Math.ceil(differenceInTime / (1000 * 3600 * 24));
+  return Math.ceil(differenceInTime / (1000 * 3600 * 24)) > 0 ? Math.ceil(differenceInTime / (1000 * 3600 * 24)) : 0 ;
+};
+
+export const getColorByValue = (value: string): string | undefined => {
+  const taskType = taskTypesOptions.find((option) => option.value === value);
+  return taskType?.color;
+};
+
+export const getTitleByValue = (value: string): string | undefined => {
+  const taskType = taskTypesOptions.find((option) => option.value === value);
+  return taskType?.label;
 };

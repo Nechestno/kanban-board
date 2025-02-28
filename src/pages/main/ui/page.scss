@@ -1,0 +1,35 @@
+.main-page {
+  margin: 0;
+  padding: 0;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__nav {
+    margin: 0 20px;
+    min-width: 250px;
+
+    .ant-typography {
+      color: white;
+    }
+
+    .ant-menu {
+      margin-top: 12px;
+      border-radius: 6px;
+      border: 1px solid #82A7A6;
+    }
+  }
+
+  &__board {
+    background-color: #F5F7FA;
+    width: 82vw;
+    height: 90vh;
+    border-radius: 6px;
+    border: 1px solid #82A7A6;
+    margin-right: 12px;
+    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 25%);
+  }
+}

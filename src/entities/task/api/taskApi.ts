@@ -1,7 +1,6 @@
 import { baseApi } from '@/shared/api';
 import { API_ENDPOINTS } from '@/shared/model';
-import { ICategoryData } from '@/entities/category/model';
-import { ITaskCardData } from '../model';
+import { ICreateTaskCard, ITaskCardData } from '../model';
 
 
 export const taskApi = baseApi.injectEndpoints({
@@ -10,17 +9,21 @@ export const taskApi = baseApi.injectEndpoints({
       query: (categoryId) => ({
         url: `${API_ENDPOINTS.TASKS.GET_ALL_BY_CATEGORY_ID}/${categoryId}`,
         method: 'GET',
-
       }),
+      providesTags: (result) =>
+        result
+          ? [...result.map(({ id }) => ({ type: 'Task' as const, id })), 'Task']
+          : ['Task'],
     }),
-    createTask: builder.mutation<ITaskCardData, ICategoryData>({
+    createTask: builder.mutation<ITaskCardData, ICreateTaskCard>({
       query: (taskData) => ({
         url: API_ENDPOINTS.TASKS.CREATE,
         method: 'POST',
         body: taskData,
       }),
+      invalidatesTags: ['Task']
     }),
-    updateTask: builder.mutation<ITaskCardData, ICategoryData>({
+    updateTask: builder.mutation<ITaskCardData, ITaskCardData>({
       query: (taskData) => ({
         url: API_ENDPOINTS.TASKS.UPDATE,
         method: 'PATCH',

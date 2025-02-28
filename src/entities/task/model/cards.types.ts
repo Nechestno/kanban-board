@@ -4,5 +4,8 @@ export interface ITaskCardData {
   title: string,
   description: string,
   dueDate: number,
-  tagColor: string,
+}
+
+export interface ICreateTaskCard extends ITaskCardData {
+  categoryId: string,
 }

@@ -5,7 +5,7 @@ import { SearchProps } from 'antd/es/input';
 import { useGetAllUserBoardsQuery } from '@/entities/board';
 import { DeleteBoardButton } from '@/features/board/deleteBoard';
 import { UpdateBoardModal } from '@/features/board/updateBoard';
-import { useAppDispatch, useAppSelector } from '@/shared/lib'; // Импортируйте useAppSelector
+import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectSelectedBoardId, setSelectedBoardId } from '@/entities/board/model';
 
 export const BoardMenu: React.FC = () => {

@@ -40,14 +40,11 @@ const getAllCategoriesWithTasksByBoardId = async (req, res) => {
  * @access Private
  */
 const createCategory = async (req, res) => {
-    const { name, tagColor, boardId } = req.body;
+    const { name, boardId } = req.body;
 
     try {
         if (!name) {
             return res.status(400).json({ message: "Пожалуйста, введите название категории" });
-        }
-        if (!tagColor) {
-            return res.status(400).json({ message: "Пожалуйста, укажите цвет категории" });
         }
         if (!boardId) {
             return res.status(400).json({ message: "Пожалуйста, укажите ID доски" });
@@ -56,7 +53,6 @@ const createCategory = async (req, res) => {
         const category = await prisma.category.create({
             data: {
                 name,
-                tagColor,
                 boardId,
             },
         });
@@ -74,14 +70,14 @@ const createCategory = async (req, res) => {
  * @access Private
  */
 const updateCategory = async (req, res) => {
-    const { id, name, tagColor } = req.body;
+    const { id, name } = req.body;
 
     try {
         if (!id) {
             return res.status(400).json({ message: "Пожалуйста, укажите ID категории для обновления" });
         }
 
-        if (!name && !tagColor) {
+        if (!name) {
             return res.status(400).json({ message: "Пожалуйста, укажите данные для обновления (имя или цвет)" });
         }
 
@@ -97,7 +93,6 @@ const updateCategory = async (req, res) => {
 
         const updateData = {};
         if (name) updateData.name = name;
-        if (tagColor) updateData.color = tagColor;
 
         const updatedCategory = await prisma.category.update({
             where: { id },

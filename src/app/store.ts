@@ -5,6 +5,7 @@ import { listenerMiddleware } from '@/entities/user';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 import boardReducer from '@/entities/board/model/boardSlice.ts';
+import categoryReducer from '@/entities/category/model/categorySlice.ts';
 
 const persistConfig = {
   key: 'root',
@@ -22,6 +23,7 @@ const store = configureStore({
     [baseApi.reducerPath]: baseApi.reducer,
     persistedReducer,
     board: boardReducer,
+    category: categoryReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

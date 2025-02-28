@@ -35,7 +35,6 @@ model Board {
 model Category {
   id        String   @id @default(uuid()) // Строковый идентификатор
   name      String
-  tagColor  String
   boardId   String
   board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
   tasks     Task[] // Связь с задачами
@@ -47,7 +46,6 @@ model Task {
   id          String   @id @default(uuid()) // Строковый идентификатор
   type        String // Наименование работы (фича, баг и т.д)
   title       String
-  tagColor    String
   description String?
   dueDate     DateTime
   categoryId  String

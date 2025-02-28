@@ -21,6 +21,6 @@ export const baseApi = createApi({
   reducerPath: 'splitApi',
   baseQuery: baseQueryWithRetry,
   refetchOnMountOrArgChange: true,
-  tagTypes: ['Board'],
+  tagTypes: ['Board', 'Category','Task'],
   endpoints: () => ({}),
 });
