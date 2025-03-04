@@ -2,7 +2,7 @@ import { createHashRouter, Navigate, Route, createRoutesFromElements, RouterProv
 import { SiteLayout } from '../layout';
 import { LoginPage } from '@/pages/login';
 import { MainPage } from '@/pages/main';
-import NoMatch from '../../pages/NoMatch/NoMatch.tsx';
+import NoMatch from '@/pages/nomatch/NoMatch.tsx';
 import { RegisterPage } from '@/pages/register';
 
 export const AppRouter = () => {

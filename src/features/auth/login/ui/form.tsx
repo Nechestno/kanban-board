@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Divider, Form, message, Typography } from 'antd';
-import { CustomInput } from '@/shared/ui/customInput';
-import { CustomButton } from '@/shared/ui/customButton';
+import { CustomInput } from '@/shared/ui/custom-input';
+import { CustomButton } from '@/shared/ui/custom-button';
 import { ILoginData, useLoginMutation } from '@/entities/user';
 import { redirect, useNavigate } from 'react-router-dom';
 import { selectUser } from '@/entities/user/model';

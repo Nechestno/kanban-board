@@ -42,7 +42,7 @@ const getAllTasksByCategoryId = async (req, res) => {
  * @access Private
  */
 const createTask = async (req, res) => {
-    const { type, title, description, dueDate, tagColor, categoryId } = req.body;
+    const { type, title, description, dueDate, categoryId } = req.body;
 
     try {
         if (!type) {
@@ -100,7 +100,7 @@ const updateTask = async (req, res) => {
         }
 
         const updateData = {};
-        if (type) updateData.workTitle = type;
+        if (type) updateData.type = type;
         if (title) updateData.title = title;
         if (description) updateData.description = description;
         if (dueDate) updateData.dueDate = new Date(dueDate);
@@ -125,16 +125,15 @@ const updateTask = async (req, res) => {
  */
 const deleteTask = async (req, res) => {
     const { taskId } = req.params;
-    const id = taskId.split("=")[1];
 
     try {
-        if (!id) {
+        if (!taskId) {
             return res.status(400).json({ message: "Пожалуйста, укажите ID задачи для удаления" });
         }
 
         const task = await prisma.task.findUnique({
             where: {
-                id,
+                id: taskId,
             },
         });
 
@@ -144,7 +143,7 @@ const deleteTask = async (req, res) => {
 
         await prisma.task.delete({
             where: {
-                id,
+                id: taskId,
             },
         });
 

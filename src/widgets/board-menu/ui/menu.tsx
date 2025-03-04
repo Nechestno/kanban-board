@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Flex, Input, Menu } from 'antd';
-import { AddBoardModal } from '@/features/board/addBoard';
+import { AddBoardModal } from '@/features/board/create-board';
 import { SearchProps } from 'antd/es/input';
 import { useGetAllUserBoardsQuery } from '@/entities/board';
-import { DeleteBoardButton } from '@/features/board/deleteBoard';
-import { UpdateBoardModal } from '@/features/board/updateBoard';
+import { DeleteBoardButton } from '@/features/board/delete-board';
+import { UpdateBoardModal } from '@/features/board/update-board';
 import { useAppDispatch, useAppSelector } from '@/shared/lib';
 import { selectSelectedBoardId, setSelectedBoardId } from '@/entities/board/model';
 
@@ -16,11 +16,6 @@ export const BoardMenu: React.FC = () => {
 
   const selectedBoardId = useAppSelector(selectSelectedBoardId); // Убедитесь, что путь правильный
 
-  useEffect(() => {
-    if (boards && boards.length > 0) {
-      dispatch(setSelectedBoardId(boards[0].id)); // Автоматически выбираем первую доску
-    }
-  }, [boards, dispatch]);
 
   const handleMenuClick = (boardId: string) => {
     dispatch(setSelectedBoardId(boardId));
@@ -53,7 +48,6 @@ export const BoardMenu: React.FC = () => {
               </Flex>
             </Menu.Item>
           ))}
-
       </Menu>
     </>
   );

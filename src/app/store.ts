@@ -1,19 +1,20 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import authReducer from '@/entities/user/model/authSlice.ts';
+import authState from '@/entities/user/model/authSlice.ts';
 import { baseApi } from '@/shared/api';
 import { listenerMiddleware } from '@/entities/user';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
-import boardReducer from '@/entities/board/model/boardSlice.ts';
+import boardState from '@/entities/board/model/boardSlice.ts';
 import categoryReducer from '@/entities/category/model/categorySlice.ts';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'board'],
 };
 const reducer = combineReducers({
-  auth: authReducer,
+  auth: authState,
+  board: boardState,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);
@@ -22,7 +23,6 @@ const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     persistedReducer,
-    board: boardReducer,
     category: categoryReducer,
   },
   middleware: (getDefaultMiddleware) =>

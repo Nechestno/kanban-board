@@ -1,2 +1,2 @@
-export const selectBoards = (state: RootState) => state.board.boards;
-export const selectSelectedBoardId = (state: RootState) => state.board.selectedBoardId;
+export const selectBoards = (state: RootState) => state.persistedReducer.board.boards;
+export const selectSelectedBoardId = (state: RootState) => state.persistedReducer.board.selectedBoardId;

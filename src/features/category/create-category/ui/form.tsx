@@ -1,8 +1,8 @@
 import React from 'react';
 import {Flex, Form} from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { CustomInput } from '@/shared/ui/customInput';
-import { CustomButton } from '@/shared/ui/customButton';
+import { CustomInput } from '@/shared/ui/custom-input';
+import { CustomButton } from '@/shared/ui/custom-button';
 import { ICategoryDataCreate, useCreateCategoryMutation } from '@/entities/category';
 import { isErrorWithMessage, useModal } from '@/shared/lib';
 

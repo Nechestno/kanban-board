@@ -1,9 +1,9 @@
 export {
   type IUserData,
   type ILoginData,
-  type IUserDataWithToken,
   authSlice,
   logout,
+  handleLogout,
   selectUser,
   selectIsAuthenticated,
 } from './model';

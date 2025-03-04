@@ -24,12 +24,9 @@ export const categorySlice = createSlice({
     clearSelectedCategory(state) {
       state.selectedCategory = null;
     },
-    // Другие редюсеры, такие как добавление, обновление и удаление категорий могут быть добавлены здесь
   },
 });
 
-// Экспортируем редюсеры
 export const { setCategories, setSelectedCategory, clearSelectedCategory } = categorySlice.actions;
 
-// Экспортируем редюсер
 export default categorySlice.reducer;

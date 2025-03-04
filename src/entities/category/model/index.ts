@@ -1,5 +1,4 @@
 export type {
-  IResponseCategoryData,
   ICategoryData,
   ICategoryDataCreate
 } from './category.types.ts';

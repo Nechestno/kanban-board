@@ -113,16 +113,15 @@ const updateCategory = async (req, res) => {
  */
 const deleteCategory = async (req, res) => {
     const { categoryId } = req.params;
-    const id = categoryId.split("=")[1];
 
     try {
-        if (!id) {
+        if (!categoryId) {
             return res.status(400).json({ message: "Пожалуйста, укажите ID категории для удаления" });
         }
 
         const category = await prisma.category.findUnique({
             where: {
-                id,
+                id: categoryId,
             },
         });
 
@@ -132,7 +131,7 @@ const deleteCategory = async (req, res) => {
 
         await prisma.category.delete({
             where: {
-                id,
+                id: categoryId,
             },
         });
 

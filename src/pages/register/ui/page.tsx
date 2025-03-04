@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'antd';
 import { RegisterForm } from '@/features/auth/register';
-import { CustomButton } from '@/shared/ui/customButton';
+import { CustomButton } from '@/shared/ui/custom-button';
 import { Link } from 'react-router-dom';
 import './page.scss';
 

@@ -1,1 +1,1 @@
-export { baseApi } from './baseApi';
+export { baseApi, useResetApiStateQuery } from './baseApi';

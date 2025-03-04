@@ -1,21 +1,22 @@
 import React from 'react';
-import { CalendarOutlined, EditOutlined } from '@ant-design/icons';
+import { CalendarOutlined } from '@ant-design/icons';
 import { Card, Tag, Typography } from 'antd';
 import { ITaskCardData } from '@/entities/task';
 import { calculateDaysDifference, getColorByValue, getTitleByValue } from '@/shared/lib';
 import './card.scss';
+import { DeleteTaskButton } from '@/features/task/delete-task';
+import { UpdateTaskDrawer } from '@/features/task/update-task';
 
 export const TaskCard: React.FC<ITaskCardData> = (props) => {
 
   const { Title, Paragraph } = Typography;
-
 
   return (
     <Card
       key={props.id}
       size="small"
       className="task-card"
-      actions={[<EditOutlined key="edit" />]}
+      actions={[<UpdateTaskDrawer task={props} />, <DeleteTaskButton taskId={props.id} />]}
       style={{ maxHeight: '75%' }}
     >
       <Tag color={getColorByValue(props.type)}>{getTitleByValue(props.type)}</Tag>

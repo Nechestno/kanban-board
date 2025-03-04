@@ -19,8 +19,16 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 1 });
 
 export const baseApi = createApi({
   reducerPath: 'splitApi',
+  keepUnusedDataFor: 30,
   baseQuery: baseQueryWithRetry,
   refetchOnMountOrArgChange: true,
   tagTypes: ['Board', 'Category','Task'],
-  endpoints: () => ({}),
+  endpoints: (builder) => ({
+    resetApiState: builder.query<void, void>({
+      query: () => '',
+      providesTags: [],
+    }),
+  }),
 });
+
+export const { useResetApiStateQuery } = baseApi;

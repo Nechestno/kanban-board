@@ -1,6 +1,11 @@
 import { baseApi } from '@/shared/api';
 import { API_ENDPOINTS } from '@/shared/model';
-import { ICategoryData, ICategoryDataCreate, IResponseCategoryData } from '../model';
+import { ICategoryData, ICategoryDataCreate} from '../model';
+import { ITaskCardData } from '@/entities/task';
+
+interface IResponseCategoryData extends ICategoryData {
+  tasks: ITaskCardData[] | null;
+}
 
 
 export const categoryApi = baseApi.injectEndpoints({
@@ -25,16 +30,18 @@ export const categoryApi = baseApi.injectEndpoints({
     }),
     updateCategory: builder.mutation<ICategoryData, ICategoryData>({
       query: (categoryData) => ({
-        url: API_ENDPOINTS.CATEGORIES.CREATE,
+        url: API_ENDPOINTS.CATEGORIES.UPDATE,
         method: 'PATCH',
         body: categoryData,
       }),
+      invalidatesTags: ['Category']
     }),
     deleteCategory: builder.mutation<{ message: string }, string>({
       query: (categoryId) => ({
         url: `${API_ENDPOINTS.CATEGORIES.DELETE}/${categoryId}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Category']
     }),
   }),
 });

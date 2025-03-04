@@ -1,6 +1,5 @@
 export {
   type ICategoryData,
-  type IResponseCategoryData,
   type ICategoryDataCreate,
   setCategories,
   setSelectedCategory,

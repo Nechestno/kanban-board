@@ -1,9 +1,9 @@
 .header {
   background-color: #607196;
   display: flex;
+  margin: 12px;
   justify-content: space-between;
   flex-direction: row;
-  margin: 12px;
   border-radius: 6px;
   border: 1px solid #82A7A6;
 
@@ -21,18 +21,16 @@
   &__down-outline {
     font-size: 14px;
     margin: 0 19px 0 6px;
-    color: white
+    color: white;
   }
 
   &__name {
     margin: 12px 6px 12px 19px;
-    color: white
+    color: white;
   }
 
   &__logo {
     color: white;
     font-size: 24px;
   }
-
-
 }

@@ -1,13 +1,13 @@
-import { CustomButton } from '@/shared/ui/customButton';
-import { DeleteOutlined, LoadingOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
 import React from 'react';
-import { isErrorWithMessage, useModal } from '@/shared/lib';
+import { isErrorWithMessage, useConfirm, useModal } from '@/shared/lib';
 import { IBoardData, useDeleteBoardMutation } from '@/entities/board';
-import { Spin } from 'antd';
+import { Button } from 'antd';
 
 export const DeleteBoardButton: React.FC<Omit<IBoardData, 'name'>> = ({ id }) => {
   const { showSuccess, showError } = useModal();
-  const [deleteBoard, { isLoading }] = useDeleteBoardMutation();
+  const [deleteBoard] = useDeleteBoardMutation();
+  const { showConfirm } = useConfirm();
 
 
   const handleDeleteBoard = async () => {
@@ -25,12 +25,11 @@ export const DeleteBoardButton: React.FC<Omit<IBoardData, 'name'>> = ({ id }) =>
     }
   };
 
-  if (isLoading) {
-    return (<Spin indicator={<LoadingOutlined spin />} size="large" />);
+  const handleClick = () => {
+    showConfirm('Подтверждение удаления доски', 'Вы точно хотите удалить доску', handleDeleteBoard);
   }
 
   return (
-    <CustomButton type="primary" color="danger" icon={<DeleteOutlined />} style={{ marginLeft: '10px' }}
-                  onClick={handleDeleteBoard} />
+    <Button type="primary" danger icon={<DeleteOutlined />} style={{ marginLeft: '10px' }} onClick={handleClick} />
   );
 };

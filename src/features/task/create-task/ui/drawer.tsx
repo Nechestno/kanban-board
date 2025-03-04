@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { DatePicker, Drawer, Form, Input, Select } from 'antd';
-import { CustomButton } from '@/shared/ui/customButton';
+import { CustomButton } from '@/shared/ui/custom-button';
 import { PlusOutlined } from '@ant-design/icons';
-import {  IResponseCategoryData } from '@/entities/category';
+import { ICategoryData } from '@/entities/category';
 import { ITaskCardData, useCreateTaskMutation } from '@/entities/task';
-import { CustomInput } from '@/shared/ui/customInput';
+import { CustomInput } from '@/shared/ui/custom-input';
 import { taskTypesOptions } from '@/shared/model';
 import { isErrorWithMessage, useModal } from '@/shared/lib';
 
+interface ICreateTaskProps extends ICategoryData {
+  tasks: ITaskCardData[];
+}
 
-export const AddTask:React.FC<IResponseCategoryData>  = (category) => {
+
+export const AddTask:React.FC<ICreateTaskProps>  = (category) => {
 
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
@@ -17,14 +21,12 @@ export const AddTask:React.FC<IResponseCategoryData>  = (category) => {
   const [createTask] = useCreateTaskMutation();
   const { showSuccess, showError } = useModal();
   const [selectedTaskType, setSelectedTaskType] = useState(taskTypesOptions[0].value);
-  console.log(selectedTaskType);
 
   const handleFormSubmit = async (data: ITaskCardData) => {
     try {
       await createTask({ categoryId: category.id, ...data}).unwrap();
       setOpen(false);
       showSuccess('Задание успешно добавлено');
-
     } catch (err) {
       const maybeError = isErrorWithMessage(err);
 
@@ -51,7 +53,7 @@ export const AddTask:React.FC<IResponseCategoryData>  = (category) => {
 
   return (
     <>
-      <CustomButton type="primary" icon={<PlusOutlined />} style={{ width: '25%' }} onClick={showDrawer} />
+      <CustomButton type="primary" icon={<PlusOutlined />} style={{ width: '100%', marginTop: '20px'}} onClick={showDrawer} >Добавить задание</CustomButton>
       <Drawer title={`Добавить задание в "${category.name}"`} onClose={onClose} open={open} width={600}>
         <Form form={form} layout="vertical" onFinish={handleFormSubmit}>
           <CustomInput name="title"
@@ -59,7 +61,7 @@ export const AddTask:React.FC<IResponseCategoryData>  = (category) => {
                        placeholder="Введите название"
                        rules={[{ required: true, message: 'Пожалуйста, введите название задания!' }]}
           />
-          <Form.Item name="type" label="Тип задания" >
+          <Form.Item name="type" label="Тип задания" rules={[{ required: true, message: 'Пожалуйста, выберите тип задания!' }]} >
             <Select
               style={{ width: '100%' }}
               options={taskTypesOptions}

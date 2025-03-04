@@ -13,9 +13,10 @@ export const CustomButton: React.FC<CustomButtonProps> =
      children,
      icon,
      onSubmit,
+     color = 'primary',
    }) => {
     return (
-      <Button type={type} htmlType={htmlType} style={style} block={block} onClick={onClick} icon={icon}
+      <Button type={type} htmlType={htmlType} style={style} block={block} onClick={onClick} icon={icon} color={color}
               onSubmit={onSubmit}>
         {children}
       </Button>

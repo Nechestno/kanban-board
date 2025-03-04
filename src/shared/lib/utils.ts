@@ -19,6 +19,7 @@ export const calculateDaysDifference = (dueDate: number) => {
   return Math.ceil(differenceInTime / (1000 * 3600 * 24)) > 0 ? Math.ceil(differenceInTime / (1000 * 3600 * 24)) : 0 ;
 };
 
+
 export const getColorByValue = (value: string): string | undefined => {
   const taskType = taskTypesOptions.find((option) => option.value === value);
   return taskType?.color;

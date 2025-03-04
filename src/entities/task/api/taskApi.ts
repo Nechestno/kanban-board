@@ -21,7 +21,7 @@ export const taskApi = baseApi.injectEndpoints({
         method: 'POST',
         body: taskData,
       }),
-      invalidatesTags: ['Task']
+      invalidatesTags: ['Task', 'Category']
     }),
     updateTask: builder.mutation<ITaskCardData, ITaskCardData>({
       query: (taskData) => ({
@@ -29,12 +29,14 @@ export const taskApi = baseApi.injectEndpoints({
         method: 'PATCH',
         body: taskData,
       }),
+      invalidatesTags: [ 'Task', 'Category'],
     }),
     deleteTask: builder.mutation<{ message: string }, string>({
       query: (taskId) => ({
         url: `${API_ENDPOINTS.TASKS.DELETE}/${taskId}`,
         method: 'DELETE',
       }),
+      invalidatesTags:  ['Task', 'Category'],
     }),
   }),
 });

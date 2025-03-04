@@ -12,7 +12,7 @@ const initialState: BoardState = {
 };
 
 export const boardSlice = createSlice({
-  name: 'board',
+  name: 'boardState',
   initialState,
   reducers: {
     setBoards(state, action: PayloadAction<IBoardData[]>) {

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { authApi } from '../api';
 import { IUserDataWithToken } from './user.types.ts';
+import { baseApi } from '@/shared/api';
 
 interface InitialState {
   user: IUserDataWithToken | null;
@@ -13,7 +14,7 @@ const initialState: InitialState = {
 };
 
 export const authSlice = createSlice({
-  name: 'authReducer',
+  name: 'authState',
   initialState,
   reducers: {
     logout: () => initialState,
@@ -36,5 +37,10 @@ export const authSlice = createSlice({
 });
 
 export const { logout } = authSlice.actions;
+
+export const handleLogout = () => (dispatch: AppDispatch) => {
+  dispatch(logout());
+  dispatch(baseApi.util.resetApiState());
+};
 export default authSlice.reducer;
 

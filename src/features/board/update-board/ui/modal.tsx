@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Spin } from 'antd'; // Импорт Spin для индикатора загрузки
+import { Button, Spin } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
-import { CustomInput } from '@/shared/ui/customInput';
+import { CustomInput } from '@/shared/ui/custom-input';
 import { useUpdateBoardMutation } from '@/entities/board';
 import { IBoardData } from '@/entities/board';
 import { isErrorWithMessage } from '@/shared/lib';
 import { useModal } from '@/shared/lib';
-import { CustomModal } from '@/shared/ui/customModal';
+import { CustomModal } from '@/shared/ui/custom-modal';
 
 type BoardModalProps = {
   style?: React.CSSProperties;
