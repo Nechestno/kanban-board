@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { DatePicker, Drawer, Form, Input, Select } from 'antd';
 import { CustomButton } from '@/shared/ui/custom-button';
 import { PlusOutlined } from '@ant-design/icons';
-import { ICategoryData } from '@/entities/category';
 import { ITaskCardData, useCreateTaskMutation } from '@/entities/task';
 import { CustomInput } from '@/shared/ui/custom-input';
 import { taskTypesOptions } from '@/shared/model';
 import { isErrorWithMessage, useModal } from '@/shared/lib';
 
-interface ICreateTaskProps extends ICategoryData {
-  tasks: ITaskCardData[];
+interface ICreateTaskProps {
+  id: string;
+  name: string;
 }
 
 
-export const AddTask:React.FC<ICreateTaskProps>  = (category) => {
+export const AddTask : React.FC<ICreateTaskProps>  = ({id, name}) => {
 
   const [open, setOpen] = useState(false);
   const [form] = Form.useForm();
@@ -24,7 +24,7 @@ export const AddTask:React.FC<ICreateTaskProps>  = (category) => {
 
   const handleFormSubmit = async (data: ITaskCardData) => {
     try {
-      await createTask({ categoryId: category.id, ...data}).unwrap();
+      await createTask({ categoryId: id, ...data}).unwrap();
       setOpen(false);
       showSuccess('Задание успешно добавлено');
     } catch (err) {
@@ -42,7 +42,6 @@ export const AddTask:React.FC<ICreateTaskProps>  = (category) => {
     setSelectedTaskType(value);
   };
 
-
   const showDrawer = () => {
     setOpen(true);
   };
@@ -54,7 +53,7 @@ export const AddTask:React.FC<ICreateTaskProps>  = (category) => {
   return (
     <>
       <CustomButton type="primary" icon={<PlusOutlined />} style={{ width: '100%', marginTop: '20px'}} onClick={showDrawer} >Добавить задание</CustomButton>
-      <Drawer title={`Добавить задание в "${category.name}"`} onClose={onClose} open={open} width={600}>
+      <Drawer title={`Добавить задание в "${name}"`} onClose={onClose} open={open} width={600}>
         <Form form={form} layout="vertical" onFinish={handleFormSubmit}>
           <CustomInput name="title"
                        label="Название задания"

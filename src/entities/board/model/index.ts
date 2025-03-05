@@ -1,7 +1,7 @@
 export type {
   IBoardData,
 } from './board.types.ts';
-export { boardSlice, setBoards, setSelectedBoardId } from './boardSlice';
-export { selectSelectedBoardId, selectBoards } from './boardSelectors.ts';
+export { boardSlice, setBoards, setSelectedBoardId, setPreviousBoardId } from './boardSlice';
+export { selectSelectedBoardId, selectBoards, selectPreviousBoardId } from './boardSelectors.ts';
 
 

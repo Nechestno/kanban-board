@@ -4,11 +4,13 @@ import { IBoardData } from '@/entities/board';
 interface BoardState {
   boards: IBoardData[];
   selectedBoardId: string | null;
+  previousBoardId: string | null;
 }
 
 const initialState: BoardState = {
   boards: [],
   selectedBoardId: null,
+  previousBoardId: null,
 };
 
 export const boardSlice = createSlice({
@@ -21,9 +23,12 @@ export const boardSlice = createSlice({
     setSelectedBoardId(state, action: PayloadAction<string | null>) {
       state.selectedBoardId = action.payload;
     },
+    setPreviousBoardId(state, action: PayloadAction<string | null>) {
+      state.previousBoardId = action.payload;
+    }
   },
 });
 
 // Export actions and reducer
-export const { setBoards, setSelectedBoardId } = boardSlice.actions;
+export const { setBoards, setSelectedBoardId, setPreviousBoardId } = boardSlice.actions;
 export default boardSlice.reducer;

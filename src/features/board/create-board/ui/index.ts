@@ -1,1 +1,1 @@
-export { AddBoardModal } from './modal';
+export { CreateBoardModal } from './modal';

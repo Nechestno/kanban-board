@@ -28,7 +28,7 @@ export const MainPage: React.FC = () => {
           <AddCategoryForm id={selectedBoardId} />
           <Divider style={{ borderColor: '#82A7A6', margin: '0px 0px 24px 0' }} />
           <div className='main-page__board-scroll'>
-          <CategoryList boardId={selectedBoardId} />
+              <CategoryList id={selectedBoardId} />
           </div>
         </div>
       </div>

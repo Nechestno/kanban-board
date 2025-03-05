@@ -12,7 +12,7 @@ type BoardModalProps = {
   style?: React.CSSProperties;
 };
 
-export const AddBoardModal: React.FC<BoardModalProps> = ({ style }) => {
+export const CreateBoardModal: React.FC<BoardModalProps> = ({ style }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [createBoard, { isLoading }] = useCreateBoardMutation();
   const { showSuccess, showError } = useModal();
@@ -22,9 +22,9 @@ export const AddBoardModal: React.FC<BoardModalProps> = ({ style }) => {
     setIsModalOpen(true);
   };
 
-  const handleFormSubmit = async (data: IBoardData) => {
+  const handleFormSubmit = async ({ id, name }: IBoardData) => {
     try {
-      await createBoard(data).unwrap();
+      await createBoard({ id, name }).unwrap();
       if (!isLoading) {
         setIsModalOpen(false);
       }

@@ -16,9 +16,9 @@ export const AddCategoryForm: React.FC<CategoryFormProps> =({ id }) => {
   const [createCategory] = useCreateCategoryMutation();
   const {showSuccess, showError} = useModal();
 
-  const handleFormSubmit = async ({ name, tagColor }: ICategoryDataCreate) => {
+  const handleFormSubmit = async ({ name }: ICategoryDataCreate) => {
     try {
-      await createCategory({ boardId: id, name, tagColor }).unwrap();
+      await createCategory({ boardId: id, name }).unwrap();
 
       showSuccess('Доска успешно создана');
     } catch (err) {

@@ -17,7 +17,7 @@ export const TaskCard: React.FC<ITaskCardData> = (props) => {
       size="small"
       className="task-card"
       actions={[<UpdateTaskDrawer task={props} />, <DeleteTaskButton taskId={props.id} />]}
-      style={{ maxHeight: '75%' }}
+      style={{ maxHeight: '75%', maxWidth: '100%' }}
     >
       <Tag color={getColorByValue(props.type)}>{getTitleByValue(props.type)}</Tag>
       <Title level={5} style={{ marginTop: '10px' }}>{props.title}</Title>
