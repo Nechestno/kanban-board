@@ -4,21 +4,20 @@ import { PlusOutlined } from '@ant-design/icons';
 import { CustomInput } from '@/shared/ui/custom-input';
 import { CustomButton } from '@/shared/ui/custom-button';
 import { ICategoryDataCreate, useCreateCategoryMutation } from '@/entities/category';
-import { isErrorWithMessage, useModal } from '@/shared/lib';
-
-type CategoryFormProps = {
-  style?: React.CSSProperties;
-  id: string;
-};
+import { isErrorWithMessage, useAppSelector, useModal } from '@/shared/lib';
+import { selectSelectedBoardId } from '@/entities/board';
 
 
-export const AddCategoryForm: React.FC<CategoryFormProps> =({ id }) => {
+
+export const AddCategoryForm: React.FC =() => {
   const [createCategory] = useCreateCategoryMutation();
   const {showSuccess, showError} = useModal();
+  const selectedBoardId = useAppSelector(selectSelectedBoardId);
+
 
   const handleFormSubmit = async ({ name }: ICategoryDataCreate) => {
     try {
-      await createCategory({ boardId: id, name }).unwrap();
+      await createCategory({ boardId: selectedBoardId, name }).unwrap();
 
       showSuccess('Доска успешно создана');
     } catch (err) {

@@ -40,11 +40,6 @@ export const DroppableCategory: React.FC<IDroppableCategoryProps> = ({ category,
     >
       <div className="category-list__header">
         <Title level={4} style={{ margin: '10px', fontWeight: '700' }}>
-          <Badge
-            key={category.id}
-            color={category.tagColor}
-            style={{ marginRight: '5px' }}
-          />
           {category.name}
           <Badge
             count={category.tasks ? category.tasks.length : 0}
