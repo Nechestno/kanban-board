@@ -1,1 +1,0 @@
-export {DroppableCategory} from './category.tsx'

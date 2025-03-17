@@ -1,0 +1,22 @@
+.board-menu {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    &-search {
+      width: 75%;
+    }
+
+    &-button {
+      width: 20%;
+    }
+  }
+
+  &__body-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+}

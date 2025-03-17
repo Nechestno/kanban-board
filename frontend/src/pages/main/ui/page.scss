@@ -1,0 +1,72 @@
+.main-page {
+  margin: 0;
+  padding: 0;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__nav {
+    margin: 0 20px;
+    min-width: 250px;
+
+
+    .ant-typography {
+      color: white;
+    }
+
+    .ant-menu {
+      margin-top: 12px;
+      border-radius: 6px;
+      border: 1px solid #82A7A6;
+    }
+  }
+
+  &__divider {
+    border-color: #82A7A6;
+    margin: 0 0 24px 0;
+  }
+
+  &__board {
+    background-color: #F5F7FA;
+    max-width: 82vw;
+    min-height: 90vh;
+    height: 100%;
+    border-radius: 6px;
+    border: 1px solid #82A7A6;
+    margin-right: 12px;
+    box-shadow: inset 0 4px 4px 0 rgba(0, 0, 0, 25%);
+    width: 100%;
+    overflow-x: auto;
+  }
+  &__board-scroll {
+    height: calc(90vh - 90px);
+    overflow-y: auto;
+    padding-right: 10px;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+
+  }
+}
+
+.category-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  max-width: 100%;
+  gap: 10px;
+  padding: 10px;
+
+  &__tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+  }
+
+  &__footer {
+    margin-top: 20px;
+  }
+}

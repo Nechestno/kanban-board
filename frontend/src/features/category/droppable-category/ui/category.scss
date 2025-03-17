@@ -1,0 +1,36 @@
+.droppable-category {
+    display: flex;
+    flex-direction: column;
+    width: 420px;
+    min-width: 375px;
+    height: 100%;
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #82A7A6;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 25%);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    &-title {
+      margin: 10px;
+    }
+    &-badge {
+      margin-left: 5px;
+    }
+    &-buttons {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+  &__divider {
+    border-color: #82A7A6;
+    margin: 0 0 24px 0;
+  }
+}

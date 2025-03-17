@@ -1,0 +1,13 @@
+.profile-modal {
+  &__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+  }
+  &__avatar {
+      background-color: #fde3cf;
+      color: #f56a00;
+  }
+}
+

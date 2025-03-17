@@ -1,1 +1,0 @@
-export { CreateBoardModal } from './modal';

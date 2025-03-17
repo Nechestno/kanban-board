@@ -1,0 +1,28 @@
+.register-form {
+  width: 100%;
+  &__header {
+    text-align: center;
+  }
+  &__title {
+    margin: 15px 0;
+  }
+  &__divider {
+    border-color: #82A7A6;
+    margin: 0 0 24px 0;
+  }
+  &__input {
+    width: 75%;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  &__item {
+    margin: 70px auto 5px auto;
+    width: 75%;
+  }
+  &__button {
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+  }
+}

@@ -1,0 +1,14 @@
+.task-card {
+  max-height: 75%;
+  max-width: 100%;
+  &__title {
+  margin-top: 10px;
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #888;
+  }
+}
