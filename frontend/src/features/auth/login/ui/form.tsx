@@ -1,8 +1,9 @@
 import { Button, Divider, Form, message, Typography } from 'antd';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ILoginData, useLoginMutation } from '@/entities/user';
+import {  useLoginMutation } from '@/entities/user';
 import { selectUser } from '@/entities/user';
+import { IUserData } from '@/shared/api';
 import { isErrorWithMessage, useAppSelector } from '@/shared/lib';
 import { CustomFormInput } from '@/shared/ui/custom-input';
 import './form.scss'
@@ -24,7 +25,7 @@ export const LoginForm: React.FC = () => {
   }, [user, navigate]);
 
 
-  const handleLogin = async (data: ILoginData) => {
+  const handleLogin = async (data: Omit<IUserData,'name'>) => {
     try {
       await login(data).unwrap();
       messageApi.open({

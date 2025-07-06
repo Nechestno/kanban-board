@@ -2,7 +2,7 @@ import { EditOutlined } from '@ant-design/icons';
 import { Button, Spin } from 'antd';
 import React, { useState } from 'react';
 import { useUpdateBoardMutation } from '@/entities/board';
-import { IBoardData } from '@/entities/board';
+import { IBoardData } from '@/shared/api';
 import { isErrorWithMessage } from '@/shared/lib';
 import { useModal } from '@/shared/lib';
 import { CustomFormInput } from '@/shared/ui/custom-input';

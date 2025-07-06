@@ -1,9 +1,10 @@
 import { Button, DatePicker, Drawer, Form, Input, Select } from 'antd';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
-import { ITaskCardData } from '@/entities/task';
+import { ITaskCardData } from '@/shared/api';
 import { taskTypes, taskTypesOptions } from '@/shared/model';
 import './drawer.scss';
+
 
 interface TaskDrawerProps {
   title: string;

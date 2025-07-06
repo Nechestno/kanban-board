@@ -1,15 +1,13 @@
-import { baseApi } from '@/shared/api';
+import { baseApi, IUserData } from '@/shared/api';
 import { API_ENDPOINTS } from '@/shared/model';
 import {
-  ILoginData,
   IResponseDataWithToken,
-  IUserData,
 } from '../model';
 
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<IResponseDataWithToken, ILoginData>({
+    login: builder.mutation<IResponseDataWithToken, Omit<IUserData, 'name'>>({
       query: (userData) => ({
         url: API_ENDPOINTS.AUTH.LOGIN,
         method: 'POST',

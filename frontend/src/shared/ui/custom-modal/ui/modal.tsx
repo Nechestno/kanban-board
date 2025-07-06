@@ -3,15 +3,15 @@ import { CustomModalProps } from '../model';
 
 
 export const CustomModal = <T, >({
-   title,
-   isOpen,
-   onClose,
-   onSubmit,
-   children,
-   okText,
-   cancelText,
-    className,
-                                 }: CustomModalProps<T>) => {
+     title,
+     isOpen,
+     onClose,
+     onSubmit,
+     children,
+     okText,
+     cancelText,
+     className,
+   }: CustomModalProps<T>) => {
   const [form] = Form.useForm();
 
   return (

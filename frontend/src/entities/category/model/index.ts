@@ -1,6 +1,4 @@
 export type {
-  ICategoryData,
-  ICategoryDataCreate,
   ICategoryDataWithTasks
 } from './category.types.ts';
 

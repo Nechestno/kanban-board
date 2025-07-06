@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { LoginForm } from '@/features/auth/login';
 
 
-
 export const LoginPage: React.FC = () => {
 
   return (

@@ -1,7 +1,8 @@
 import { Button, Divider, Form, message, Typography } from 'antd';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IUserData, selectUser, useRegisterMutation } from '@/entities/user';
+import { selectUser, useRegisterMutation } from '@/entities/user';
+import { IUserData } from '@/shared/api';
 import { isErrorWithMessage, useAppSelector } from '@/shared/lib';
 import { CustomFormInput } from '@/shared/ui/custom-input';
 import './form.scss'
@@ -72,7 +73,7 @@ export const RegisterForm: React.FC = () => {
           label="Никнейм:"
           name="name"
           placeholder="Введите никнейм"
-          rules={[{ required: true, message: 'Пожалуйста введите логин!' }]}
+          rules={[{ required: true, message: 'Пожалуйста введите никнейм!' }]}
           className='register-form__input'
         />
 

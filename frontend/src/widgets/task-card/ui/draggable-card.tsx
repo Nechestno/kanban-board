@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
 import { TaskCard } from '@/widgets/task-card';
-import { ITaskCardData } from '@/entities/task';
+import { ITaskCardData } from '@/shared/api';
 
 
 interface IDraggableTaskCardProps {

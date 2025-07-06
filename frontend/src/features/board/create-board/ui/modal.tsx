@@ -1,57 +1,50 @@
-import { PlusOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
-import React, { useState } from 'react';
+import React from 'react';
 import { useCreateBoardMutation } from '@/entities/board';
-import { IBoardData } from '@/entities/board';
+import { useCreateCategoryMutation } from '@/entities/category';
+import { IBoardData } from '@/shared/api';
 import { isErrorWithMessage } from '@/shared/lib';
 import { useModal } from '@/shared/lib';
+import { basicCategories } from '@/shared/model/constants.ts';
 import { CustomFormInput } from '@/shared/ui/custom-input';
 import { CustomModal } from '@/shared/ui/custom-modal';
 
 type BoardModalProps = {
-  className?: string;
+  isModalOpen: boolean;
+  onClose: () => void;
 };
 
-export const CreateBoardModalButton: React.FC<BoardModalProps> = ({ className }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [createBoard, { isLoading }] = useCreateBoardMutation();
+export const CreateBoardModal: React.FC<BoardModalProps> = ({ isModalOpen, onClose }) => {
+  const [createBoard] = useCreateBoardMutation();
+  const [createCategory] = useCreateCategoryMutation();
   const { showSuccess, showError } = useModal();
 
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleFormSubmit = async ({ id, name }: IBoardData) => {
+  const handleFormSubmit = async (data: IBoardData) => {
     try {
-      await createBoard({ id, name }).unwrap();
-      if (!isLoading) {
-        setIsModalOpen(false);
+      const boardResponse = await createBoard(data).unwrap();
+
+      for(const elem of basicCategories) {
+        await createCategory({name: elem, boardId: boardResponse.id}).unwrap()
       }
+
       showSuccess('Доска успешно создана');
     } catch (err) {
       const maybeError = isErrorWithMessage(err);
 
       if (maybeError) {
         showError(err.data.message);
-        setIsModalOpen(true);
       } else {
         showError('Произошла неизвестная ошибка');
       }
     }
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
-      <Button type="primary"  className={className} onClick={showModal} ><PlusOutlined /></Button>
       <CustomModal<IBoardData>
         title="Создать доску"
         isOpen={isModalOpen}
-        onClose={handleCancel}
+        onClose={onClose}
         onSubmit={handleFormSubmit}
         cancelText="Отмена"
         okText="Добавить">

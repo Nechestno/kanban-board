@@ -1,5 +1,5 @@
-import { DeleteOutlined, LoadingOutlined } from '@ant-design/icons';
-import { Button, Spin } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 import React from 'react';
 import { useDeleteCategoryMutation } from '@/entities/category';
 import { isErrorWithMessage, useConfirm, useModal } from '@/shared/lib';
@@ -10,7 +10,7 @@ interface IDeleteCategoryButtonProps {
 
 export const DeleteCategoryButton : React.FC<IDeleteCategoryButtonProps> = ({ id }  ) => {
   const { showSuccess, showError } = useModal();
-  const [deleteCategory, { isLoading }] = useDeleteCategoryMutation();
+  const [deleteCategory] = useDeleteCategoryMutation();
   const { showConfirm } = useConfirm();
 
 
@@ -31,10 +31,6 @@ export const DeleteCategoryButton : React.FC<IDeleteCategoryButtonProps> = ({ id
 
   const handleClick = () => {
     showConfirm('Подтверждение удаления категории', 'Вы точно хотите удалить категорию', handleDeleteCategory);
-  }
-
-  if (isLoading) {
-    return (<Spin indicator={<LoadingOutlined spin />} size="large" />);
   }
 
   return (

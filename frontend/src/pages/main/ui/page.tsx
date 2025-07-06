@@ -20,7 +20,6 @@ export const MainPage: React.FC = () => {
   const { data: categories, isError, isLoading } =
     useGetAllCategoriesWithTasksByBoardIdQuery(selectedBoardId);
 
-
   return (
     <div className="main-page">
       <div className="main-page__container">
@@ -44,18 +43,16 @@ export const MainPage: React.FC = () => {
               >
                 <div className='category-list'>
                 {categories && categories.map(category => (
-                  <>
                     <CategoryList key={category.id} category={category}>
                       <div className="category-list__tasks">
                         {category.tasks?.map((task) => (
                           <DraggableTaskCard key={task.id} task={task} />
                         ))}
                       </div>
-                      <div className="category-list__footer">
+                      <div className="category-list__footer-button">
                         <CreateTaskButton id={category.id} name={category.name} />
                       </div>
                     </CategoryList>
-                  </>
                 ))}
                 </div>
               </ScrollingComponent>

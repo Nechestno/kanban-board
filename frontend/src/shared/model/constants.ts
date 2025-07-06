@@ -42,4 +42,8 @@ export const taskTypesOptions: Record<taskTypes, { label: string; color: string 
 
 
 
+export const basicCategories = ['Надо сделать', 'В работе', 'Законченные'];
+
+
+
 

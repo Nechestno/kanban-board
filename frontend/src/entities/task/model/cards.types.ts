@@ -1,13 +1,6 @@
 import { Dayjs } from 'dayjs';
+import { ITaskCardData } from '@/shared/api';
 
-export interface ITaskCardData {
-  id: string,
-  type: string,
-  title: string,
-  description?: string,
-  dueDate: Dayjs,
-  categoryId: string,
-}
 export interface IUpdateTaskCard {
   id: string,
   type?: string,

@@ -1,5 +1,4 @@
 export {
-  type IBoardData,
   boardSlice,
   setBoards,
   setSelectedBoardId,

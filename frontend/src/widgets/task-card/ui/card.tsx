@@ -4,10 +4,11 @@ import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { DeleteTaskButton } from '@/features/task/delete-task';
 import { UpdateTaskButton } from '@/features/task/update-task';
-import { ITaskCardData } from '@/entities/task';
+import { ITaskCardData } from '@/shared/api';
 import { calculateDaysDifference } from '@/shared/lib';
 import './card.scss';
 import { taskTypes, taskTypesOptions } from '@/shared/model';
+
 
 
 export const TaskCard: React.FC<ITaskCardData> = (props) => {

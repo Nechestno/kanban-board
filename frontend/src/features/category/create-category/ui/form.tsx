@@ -1,7 +1,8 @@
 import { Button, Form} from 'antd';
 import React from 'react';
 import { selectSelectedBoardId } from '@/entities/board';
-import { ICategoryDataCreate, useCreateCategoryMutation } from '@/entities/category';
+import { useCreateCategoryMutation } from '@/entities/category';
+import {ICategoryData} from '@/shared/api';
 import { isErrorWithMessage, useAppSelector, useModal } from '@/shared/lib';
 import { CustomFormInput } from '@/shared/ui/custom-input';
 import './form.scss'
@@ -13,7 +14,7 @@ export const AddCategoryForm: React.FC =() => {
   const {showSuccess, showError} = useModal();
   const selectedBoardId = useAppSelector(selectSelectedBoardId);
 
-  const handleFormSubmit = async ({ name }: ICategoryDataCreate) => {
+  const handleFormSubmit = async ({ name }: ICategoryData) => {
     try {
       await createCategory({ boardId: selectedBoardId, name }).unwrap();
 

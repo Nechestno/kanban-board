@@ -2,10 +2,10 @@ import { Badge, Divider, Typography } from 'antd';
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import { DeleteCategoryButton } from '@/features/category/delete-category';
-import { UpdateCategoryModal } from '@/features/category/update-category';
+import { UpdateCategoryButton } from '@/features/category/update-category';
 import './category.scss';
 import { ICategoryDataWithTasks } from '@/entities/category';
-import { ITaskCardData } from '@/entities/task';
+import { ITaskCardData } from '@/shared/api';
 
 
 interface IDroppableCategoryProps {
@@ -31,6 +31,7 @@ export const DroppableCategory: React.FC<IDroppableCategoryProps> = ({ category,
       ref={drop}
       style={{
         backgroundColor: isOver ? '#EEEEEE' : '#f5f5f5',
+        height: isOver ?  'auto' : '100%',
       }}
       className="droppable-category"
     >
@@ -47,7 +48,7 @@ export const DroppableCategory: React.FC<IDroppableCategoryProps> = ({ category,
         <div
           className="droppable-category__header-buttons"
         >
-          <UpdateCategoryModal id={category.id} />
+          <UpdateCategoryButton id={category.id} />
           <DeleteCategoryButton id={category.id} />
         </div>
       </div>

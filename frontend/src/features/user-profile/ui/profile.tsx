@@ -1,9 +1,11 @@
 import { Avatar, Typography } from 'antd';
 import React from 'react';
-import { IUserData, selectUser } from '@/entities/user';
+import {  selectUser } from '@/entities/user';
+import { IUserData } from '@/shared/api';
 import { useAppSelector } from '@/shared/lib';
 import { CustomModal } from '@/shared/ui/custom-modal';
 import './profile.scss'
+
 
 interface ButtonProps {
   isOpen: boolean;

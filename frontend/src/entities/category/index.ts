@@ -1,6 +1,4 @@
 export {
-  type ICategoryData,
-  type ICategoryDataCreate,
   type ICategoryDataWithTasks,
   categorySlice,
   setCategories,

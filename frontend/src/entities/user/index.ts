@@ -1,6 +1,4 @@
 export {
-  type IUserData,
-  type ILoginData,
   authSlice,
   logout,
   handleLogout,

@@ -1,34 +1,27 @@
-import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
-import { Button, Spin } from 'antd';
-import React, { useState } from 'react';
-import { ICategoryData, useUpdateCategoryMutation } from '@/entities/category';
+import {  LoadingOutlined } from '@ant-design/icons';
+import {  Spin } from 'antd';
+import React from 'react';
+import {  useUpdateCategoryMutation } from '@/entities/category';
+import { ICategoryData } from '@/shared/api'
 import { isErrorWithMessage, useModal } from '@/shared/lib';
 import { CustomFormInput } from '@/shared/ui/custom-input';
 import { CustomModal } from '@/shared/ui/custom-modal';
 
 interface IUpdateCategoryModalProps {
-  id : string;
+  id : string
+  onClose : () => void;
+  isModalOpen: boolean;
 }
 
-export const UpdateCategoryModal : React.FC<IUpdateCategoryModalProps> = ({id}) => {
+export const UpdateCategoryModal : React.FC<IUpdateCategoryModalProps> = ({id, onClose, isModalOpen}) => {
   const { showSuccess, showError } = useModal();
   const [updateCategory, { isLoading }] = useUpdateCategoryMutation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
 
   const handleUpdateCategory = async (data : Omit<ICategoryData, 'id'> ) => {
     try {
       await updateCategory({ id ,...data }).unwrap();
       showSuccess('Категория успешно обновлена');
-      setIsModalOpen(false);
     } catch (err) {
       const maybeError = isErrorWithMessage(err);
 
@@ -47,11 +40,10 @@ export const UpdateCategoryModal : React.FC<IUpdateCategoryModalProps> = ({id}) 
 
   return (
     <>
-      <Button type="primary" icon={<EditOutlined />}  onClick={showModal} />
       <CustomModal<ICategoryData>
         title="Обновить категорию"
         isOpen={isModalOpen}
-        onClose={handleCancel}
+        onClose={onClose}
         onSubmit={handleUpdateCategory}
         cancelText="Отмена"
         okText="Изменить"

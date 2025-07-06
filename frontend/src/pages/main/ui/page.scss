@@ -62,11 +62,13 @@
   &__tasks {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
     gap: 4px;
     width: 100%;
   }
 
-  &__footer {
+  &__footer-button {
     margin-top: 20px;
+    height: 40px;
   }
 }

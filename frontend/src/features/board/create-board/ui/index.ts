@@ -1,1 +1,2 @@
-export { CreateBoardModalButton } from './modal';
+export { CreateBoardModal } from './modal';
+export { CreateBoardButton } from './button';

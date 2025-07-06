@@ -2,7 +2,8 @@ import { ContainerOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import React, { useState } from 'react';
 import { TaskDrawer } from '@/widgets/task-drawer';
-import { ITaskCardData, useUpdateTaskMutation } from '@/entities/task';
+import { useUpdateTaskMutation } from '@/entities/task';
+import { ITaskCardData } from '@/shared/api';
 import { isErrorWithMessage, useModal } from '@/shared/lib';
 
 interface UpdateTaskButtonProps {

@@ -1,6 +1,7 @@
-import { baseApi } from '@/shared/api';
+import { baseApi, ITaskCardData } from '@/shared/api';
 import { API_ENDPOINTS } from '@/shared/model';
-import { ICreateTaskCard, ITaskCardData, IUpdateTaskCard } from '../model';
+import { ICreateTaskCard, IUpdateTaskCard } from '../model';
+
 
 
 export const taskApi = baseApi.injectEndpoints({

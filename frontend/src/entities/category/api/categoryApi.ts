@@ -1,6 +1,7 @@
 import { baseApi } from '@/shared/api';
+import {ICategoryData} from '@/shared/api'
 import { API_ENDPOINTS } from '@/shared/model';
-import { ICategoryData, ICategoryDataCreate, ICategoryDataWithTasks } from '../model';
+import { ICategoryDataWithTasks } from '../model';
 
 
 export const categoryApi = baseApi.injectEndpoints({
@@ -15,7 +16,7 @@ export const categoryApi = baseApi.injectEndpoints({
           ? [...result.map(({ id }) => ({ type: 'Category' as const, id })), 'Category']
           : ['Category', 'Task'],
     }),
-    createCategory: builder.mutation<ICategoryDataWithTasks, ICategoryDataCreate>({
+    createCategory: builder.mutation<ICategoryDataWithTasks, Omit<ICategoryData, 'id'>>({
       query: (categoryData) => ({
         url: API_ENDPOINTS.CATEGORIES.CREATE,
         method: 'POST',

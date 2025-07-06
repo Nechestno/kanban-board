@@ -2,7 +2,8 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import React, { useState } from 'react';
 import { TaskDrawer } from '@/widgets/task-drawer';
-import { ITaskCardData, useCreateTaskMutation } from '@/entities/task';
+import { useCreateTaskMutation } from '@/entities/task';
+import { ITaskCardData } from '@/shared/api';
 import { isErrorWithMessage, useModal } from '@/shared/lib';
 
 interface ICreateTaskProps {

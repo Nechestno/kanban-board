@@ -10,7 +10,7 @@ export const isErrorWithMessage = (error: unknown): error is ErrorWithMessage =>
   );
 };
 
-export const calculateDaysDifference = (dueDate: Dayjs) => {
+export const calculateDaysDifference = (dueDate: Dayjs) : number => {
   const currentDate = dayjs();
   const differenceInTime = dueDate.diff(currentDate);
 

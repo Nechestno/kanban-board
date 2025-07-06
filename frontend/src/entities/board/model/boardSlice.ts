@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IBoardData } from '@/entities/board';
+import { IBoardData } from '@/shared/api';
 
 interface BoardState {
   boards: IBoardData[];

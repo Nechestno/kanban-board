@@ -1,4 +1,4 @@
-import { IBoardData } from '@/entities/board';
+import { IBoardData } from '@/shared/api';
 import { baseApi } from '@/shared/api';
 import { API_ENDPOINTS } from '@/shared/model';
 
