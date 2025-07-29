@@ -15,6 +15,8 @@ export const TaskCard: React.FC<ITaskCardData> = (props) => {
 
   const { Title, Paragraph } = Typography;
   const [days, setDays] = useState<number>(0);
+  
+
 
   useEffect(() => {
     const day = calculateDaysDifference(dayjs(props.dueDate))

@@ -4,6 +4,7 @@ import { MainPage } from '@/pages/main';
 import { NoMatch } from '@/pages/nomatch';
 import { RegisterPage } from '@/pages/register';
 import { SiteLayout } from '../layout';
+import { PrivateRoute } from './privateRouter';
 
 export const AppRouter = () => {
 
@@ -12,7 +13,9 @@ export const AppRouter = () => {
       <Route index element={<Navigate to="login" replace />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="registration" element={<RegisterPage />} />
-      <Route path="main" element={<MainPage />}> </Route>
+      <Route element={<PrivateRoute  />}>
+        <Route path="main" element={<MainPage />}> </Route>
+      </Route>
       <Route path="*" element={<NoMatch />} />
     </Route>,
   );

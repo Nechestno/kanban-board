@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ProfileModalButton } from '@/features/user-profile';
 import { handleLogout, selectIsAuthenticated, selectUser } from '@/entities/user';
-import { useAppDispatch, useAppSelector } from '@/shared/lib';
+import { removeCookies, useAppDispatch, useAppSelector } from '@/shared/lib';
 
 const items: MenuProps['items'] = [
   {
@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
 
   const handleLogoutFunc = () => {
     dispatch(handleLogout());
-    localStorage.removeItem('token');
+    removeCookies();
     navigate('/login');
   };
 
@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
         break;
     }
   };
-  const userInitial : string = user ? user.name.charAt(0).toUpperCase() : '';
+  const userInitial : string = user ? user.charAt(0).toUpperCase() : '';
 
   return (
     <>

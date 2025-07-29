@@ -17,7 +17,7 @@ const auth = async (req, res,next) => {
         next();
     }
     catch(err){
-        res.status(401).send({message:"Не авторизован"});
+        res.status(401).send({message:"Нет доступа"});
     }
 }
 

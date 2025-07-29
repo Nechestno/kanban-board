@@ -1,10 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { baseApi } from '@/shared/api';
 import { authApi } from '../api';
-import { IResponseDataWithToken } from './user.types.ts';
 
 interface InitialState {
-  user: IResponseDataWithToken | null;
+  user: string | null;
   isAuthenticated: boolean;
 }
 
@@ -22,15 +20,15 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addMatcher(authApi.endpoints.login.matchFulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.name;
         state.isAuthenticated = true;
       })
       .addMatcher(authApi.endpoints.register.matchFulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.name;
         state.isAuthenticated = true;
       })
       .addMatcher(authApi.endpoints.current.matchFulfilled, (state, action) => {
-        state.user = action.payload;
+        state.user = action.payload.name;
         state.isAuthenticated = true;
       });
   },
@@ -38,9 +36,5 @@ export const authSlice = createSlice({
 
 export const { logout } = authSlice.actions;
 
-export const handleLogout = () => (dispatch: AppDispatch) => {
-  dispatch(logout());
-  dispatch(baseApi.util.resetApiState());
-};
 export default authSlice.reducer;
 

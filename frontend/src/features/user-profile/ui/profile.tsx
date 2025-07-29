@@ -17,8 +17,8 @@ export const ProfileModalButton: React.FC<ButtonProps> = ({isOpen=false, onClose
   const user = useAppSelector(selectUser);
   const { Title } = Typography;
 
-  const userName: string = user ? user.name : '';
-  const userInitial : string = user ? user.name.charAt(0).toUpperCase() : '';
+  const userName: string = user ? user : '';
+  const userInitial : string = user ? user.charAt(0).toUpperCase() : '';
 
   return (
     <>

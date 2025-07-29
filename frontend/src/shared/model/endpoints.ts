@@ -4,6 +4,7 @@ export const API_ENDPOINTS = {
     LOGIN: '/user/login',
     REGISTER: '/user/register',
     CURRENT: '/user/current',
+    REFRESH_ACCESS_TOKEN: '/user/refreshAccessToken',
   },
 
   // Канбан доски
